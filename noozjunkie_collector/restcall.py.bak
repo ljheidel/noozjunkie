@@ -1,0 +1,85 @@
+##
+## collector.py
+## ljheidel@noozjunkie.com
+##
+import collector_config
+import requests
+import json
+
+class RestCall:
+
+    token = False
+
+    def __init__(self):
+        self.token = self.requestToken()
+
+    def requestToken(self):
+        headers = {'Content-Type': 'application/json', 'user-agent': collector_config.USER_AGENT }
+        url = "%s/auth" % (collector_config.API_BASE_URL)
+        data = { 'username': collector_config.API_USERNAME, 'password': collector_config.API_PASSWORD }
+        response = ""
+        try:
+            response = requests.post(url, headers=headers, data=json.dumps(data))
+            assert response.status_code == 200 or response.status_code == 201 or response.status_code == 204
+            newtoken = response.json()['access_token']
+            return newtoken
+        except AssertionError as e:
+            print("Error requesting token: %s %s (%s)" % (response.json()['status_code'], response.json()['error'], response.json()['description']))
+            return False
+
+    def doGet(self, endpoint, filters = ""):
+        headers = {'Content-Type': 'application/json', 'user-agent': collector_config.USER_AGENT, 'Authorization': "JWT %s" % self.token}
+        url = "%s/api/%s" % (collector_config.API_BASE_URL, endpoint)
+        params = ""
+        response = ""
+        try:
+            if filters != "":
+                params = dict(q=json.dumps(dict(filters=filters)))
+                response = requests.get(url, headers=headers, params=params)
+                assert response.status_code == 200 or response.status_code == 201 or response.status_code == 204
+            else:
+                response = requests.get(url, headers=headers)
+                assert response.status_code == 200 or response.status_code == 201 or response.status_code == 204
+            return response
+        except AssertionError as e:
+            print("Error GETting data from %s: %s %s (%s)" % (url, response.json()['status_code'], response.json()['error'], response.json()['description']))
+            return False
+
+    def doPost(self, endpoint, data = ""):
+        headers = {'Content-Type': 'application/json', 'user-agent': collector_config.USER_AGENT, 'Authorization': "JWT %s" % self.token}
+        url = "%s/api/%s" % (collector_config.API_BASE_URL, endpoint)
+        params = ""
+        response = ""
+        try:
+            if data != "":
+                response = requests.post(url, headers=headers, data=json.dumps(data))
+                assert response.status_code == 200 or response.status_code == 201 or response.status_code == 204
+            else:
+                response = requests.post(url, headers=headers)
+                assert response.status_code == 200 or response.status_code == 201 or response.status_code == 204
+            return response
+        except AssertionError as e:
+            print("Error POSTing data to %s: %s %s (%s)" % (url, response.json()['status_code'], response.json()['error'], response.json()['description']))
+            return False
+
+    def doPut(self, endpoint, filters = "", data = dict()):
+        putdata = dict()
+        if filters != "":
+            putdata.update(dict(q=dict(filters=filters)))
+        putdata.update(data)
+
+        headers = {'Content-Type': 'application/json', 'user-agent': collector_config.USER_AGENT, 'Authorization': "JWT %s" % self.token}
+        url = "%s/api/%s" % (collector_config.API_BASE_URL, endpoint)
+        params = ""
+        response = ""
+        try:
+            if putdata != "":
+                response = requests.put(url, headers=headers, data=json.dumps(putdata))
+                assert response.status_code == 200 or response.status_code == 201 or response.status_code == 204
+            else:
+                response = requests.post(url, headers=headers)
+                assert response.status_code == 200 or response.status_code == 201 or response.status_code == 204
+            return response
+        except AssertionError as e:
+            print("Error PUTting data to %s: %s %s (%s)" % (url, response.json()['status_code'], response.json()['error'], response.json()['description']))
+            return False

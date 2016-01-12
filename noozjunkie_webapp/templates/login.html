@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Sign In</h1>
+    <form action="" method="post" name="login">
+    {{ form.hidden_tag() }}
+    <table>
+    <tr>
+        <td>username:</td>
+        <td>{{ form.username(size=10)  }}</td>
+    </tr>
+    <tr>   
+        <td>password:</td>
+        <td>{{ form.password(size=10)  }}</td>
+    </tr>
+    <tr>
+        <td>remember me?</td>
+        <td>{{ form.remember_me }}</td>
+    </tr>
+    <tr>
+        <td colspan="2"><input type="submit" value="sign in"></td>
+    </tr>
+    </table>
+    </form>
+{% endblock %} 

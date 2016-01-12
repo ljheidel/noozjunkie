@@ -1,0 +1,44 @@
+[
+	{
+		"type": "1",
+		"title": "Reddit World News",
+		"source": "worldnews",
+		"interval": 300,
+        "active": 1
+	},
+	{
+		"type": "0",
+        "title": "Google News Nuclear War Search",
+        "source": "http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=nuclear+war&output=rss",
+		"interval": 300,
+        "active": 0
+    },
+	{
+		"type": "0",
+        "title": "Google News",
+        "source": "http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&output=rss",
+		"interval": 300,
+        "active": 0
+    },
+	{
+		"type": "2",
+		"title": "Drudge Report",
+		"source": "http://www.drudgereport.com",
+		"interval": 300,
+        "active": 0
+	},
+	{
+		"type": "2",
+		"title": "Fark Politics",
+		"source": "http://www.fark.com/politics/",
+		"interval": 300,
+        "active": 0
+	},
+	{
+		"type": "0",
+		"title": "Drudge Report via RSS",
+		"source": "http://feeds.feedburner.com/DrudgeReportFeed",
+		"interval": 300,
+        "active": 0
+	}
+]
