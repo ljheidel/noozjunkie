@@ -200,7 +200,8 @@ class ArticleData:
         self.description = description
         self.published = published
         self.content = self.retrieveContent(self.link)
-        self.contenthash = hashlib.md5(self.content.encode('utf-8')).hexdigest()    
+        if self.content != None:
+            self.contenthash = hashlib.md5(self.content.encode('utf-8')).hexdigest()   
 
     ## 
     ## Use the newspaper module to grab the content from a web page
