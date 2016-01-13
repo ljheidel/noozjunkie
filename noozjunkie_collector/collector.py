@@ -217,4 +217,5 @@ class ArticleData:
             self.retrieved = str(datetime.datetime.utcnow())
             return a.text
         except Exception as e:
+            log.error("Exception retrieving %s" % (link))
             log.exception(e)

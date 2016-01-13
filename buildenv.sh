@@ -50,6 +50,14 @@ if [ ! -e newspaper ]; then
             exit 1
         fi
         cd ..
+
+        ../flask/bin/pip3 install Pillow --upgrade
+        if [ ${?} -ne 0 ]; then
+            echo "Error updating Pillow. Exiting."
+            exit 1
+        fi
+        cd ..
+
 fi
 
 if [ ! -e noozjunkie.db ] && [ -e noozjunkie.db.empty ]; then
