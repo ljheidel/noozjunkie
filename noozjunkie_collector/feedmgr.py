@@ -35,7 +35,7 @@ class FeedMgr:
     ##
     def addFeed(this, title, source, description="", type=2, interval=300, active=0):
         if this.feedExists(title) == False:
-            log.warn("Adding type %s feed %s to be retrieved from %s to API server." % (type, feed, source))
+            log.warn("Adding type %s feed %s to be retrieved from %s to API server." % (type, title, source))
             data = { 'title': title, 'source': source, 'type': type, 'interval': interval, 'active': active }
             response = None
             try:
