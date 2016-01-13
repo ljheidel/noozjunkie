@@ -3,7 +3,7 @@
 PATH="/usr/local/bin:/usr/bin:/sbin:/bin"
 
 DIRS="tmp noozjunkie_webapp/static noozjunkie_webapp/templates"
-MODS="flask flask-login flask-sqlalchemy sqlalchemy-migrate flask-restless requests praw feedparser flask-wtf flask-bcrypt"
+MODS="flask flask-login flask-sqlalchemy sqlalchemy-migrate flask-restless requests praw feedparser flask-wtf flask-bcrypt flask_JWT"
 DIR="flask"
 
 for d in ${DIRS}; do
