@@ -59,7 +59,6 @@ class Collector:
     ##
     def processRSS(self, feedid, url):
         d = feedparser.parse(url)
-        stats.articles_retrieved += len(d['items'])
         for item in d['items']:
             log.info('retreiving %s' % item.title)
             self.articles.append(ArticleData(feedid, item.title, item.link, item.description, item.published))
