@@ -52,3 +52,6 @@ if [ ! -e newspaper ]; then
         cd ..
 fi
 
+if [ ! -e noozjunkie.db ] && [ -e noozjunkie.db.empty ]; then
+    mv noozjunkie.db.empty noozjunkie.db
+fi
