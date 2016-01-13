@@ -49,7 +49,6 @@ if [ ! -e newspaper ]; then
             echo "Error installing newspaper. Exiting."
             exit 1
         fi
-        cd ..
 
         ../flask/bin/pip3 install Pillow --upgrade
         if [ ${?} -ne 0 ]; then
