@@ -33,19 +33,19 @@ done
 
 if [ ! -e newspaper ]; then
         git clone git://github.com/codelucas/newspaper.git
-        if [ ${?} -ne 0]; then
+        if [ ${?} -ne 0 ]; then
             echo "Error cloning newspaper.  Exiting."
             exit 1
         fi 
         cd newspaper
         ../flask/bin/pip3 install -r requirements.txt
-        if [ ${?} -ne 0]; then
+        if [ ${?} -ne 0 ]; then
             echo "Error installing dependencies for newspaper. Exiting."
             exit 1
         fi
 
         ../flask/bin/python3 ./setup.py install
-        if [ ${?} -ne 0]; then
+        if [ ${?} -ne 0 ]; then
             echo "Error installing newspaper. Exiting."
             exit 1
         fi
