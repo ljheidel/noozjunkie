@@ -19,6 +19,7 @@ if [ ! -e ${DIR}/bin/python3 ]; then
     if [ ${?} -ne 0 ]; then
         echo "Error creating virtual environment.  Exiting."
         exit 1
+    fi
 else
     echo 'Virtual environment appears to already exist in '${DIR}
 fi
